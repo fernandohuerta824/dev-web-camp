@@ -6,6 +6,8 @@ use MVC\Router;
 
 class AuthController {
     public static function login(Router $router) {
-        $alertas = [];
+        $router->render('auth/login', [
+            'titulo' => 'Iniciar Sesión'
+        ]);
     }
 }

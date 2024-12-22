@@ -1,0 +1,23 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.auth {
+    
+    height: 100dvh;
+    display: grid;
+    align-content: center;
+    background-color: v.$gris-claro;
+    width: 100%;
+
+    &__contenedor {
+        @include m.contenedor-sm;
+    }
+
+    &__heading {
+        margin: 0;
+    }
+
+    &__texto {
+        text-align: center;
+    }
+}
