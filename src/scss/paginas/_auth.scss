@@ -2,13 +2,12 @@
 @use "base/variables" as v;
 
 .auth {
-    
-    height: 100dvh;
     display: grid;
     align-content: center;
     background-color: v.$gris-claro;
     width: 100%;
-
+    min-height: 100dvh;   
+    padding: 2rem 0;
     &__contenedor {
         @include m.contenedor-sm;
     }

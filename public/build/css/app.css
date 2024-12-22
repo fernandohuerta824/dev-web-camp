@@ -406,11 +406,12 @@ h3 {
 }
 
 .auth {
-  height: 100dvh;
   display: grid;
   align-content: center;
   background-color: #F8FAFC;
   width: 100%;
+  min-height: 100dvh;
+  padding: 2rem 0;
 }
 .auth__contenedor {
   width: min(95%, 60rem);

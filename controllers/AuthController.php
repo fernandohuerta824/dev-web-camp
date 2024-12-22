@@ -10,4 +10,10 @@ class AuthController {
             'titulo' => 'Iniciar Sesión'
         ]);
     }
+
+    public static function registro(Router $router) {
+        $router->render('auth/registro', [
+            'titulo' => 'Crear Cuenta'
+        ]);
+    }
 }
