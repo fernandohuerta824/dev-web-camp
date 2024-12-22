@@ -17,9 +17,9 @@ $router->post('/login', [AuthController::class, 'login']);
 $router->get('/registro', [AuthController::class, 'registro']);
 $router->post('/registro', [AuthController::class, 'registro']);
 
-// // Formulario de olvide mi password
-// $router->get('/olvide', [AuthController::class, 'olvide']);
-// $router->post('/olvide', [AuthController::class, 'olvide']);
+// Formulario de olvide mi password
+$router->get('/olvide', [AuthController::class, 'olvide']);
+$router->post('/olvide', [AuthController::class, 'olvide']);
 
 // // Colocar el nuevo password
 // $router->get('/reestablecer', [AuthController::class, 'reestablecer']);

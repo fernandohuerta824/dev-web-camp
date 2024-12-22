@@ -16,4 +16,10 @@ class AuthController {
             'titulo' => 'Crear Cuenta'
         ]);
     }
+
+    public static function olvide(Router $router) {
+        $router->render('auth/olvide', [
+            'titulo' => 'Restablecer Contraseña'
+        ]);
+    }
 }
