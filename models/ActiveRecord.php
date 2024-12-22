@@ -12,7 +12,7 @@ abstract class ActiveRecord {
 
     protected static array $columnas = [];
 
-    protected static array $errores = [];
+    protected static array $alertas = [];
 
     public int $id;
     public Imagen $imagen;
@@ -22,7 +22,7 @@ abstract class ActiveRecord {
     }
     
     public function guardar() {
-        if(!empty(static::$errores)) 
+        if(!empty(static::$alertas)) 
             return false;
         $atributos = $this->sanitizarAtributos();
 
@@ -113,8 +113,8 @@ abstract class ActiveRecord {
         return $array;
     }
 
-    public static function getErrores(): array {
-        return static::$errores;
+    public static function getAlertas(): array {
+        return static::$alertas;
     }   
 
     public static function todos(): array {
