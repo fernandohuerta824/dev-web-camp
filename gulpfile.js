@@ -29,7 +29,7 @@ function css() {
     return src(paths.scss)
         .pipe( sourcemaps.init())
         .pipe( sass({outputStyle: 'expanded'}))
-        // .pipe( postcss([autoprefixer(), cssnano()]))
+        .pipe( postcss([autoprefixer()]))
         .pipe( sourcemaps.write('.'))
         .pipe(  dest('public/build/css') );
 }
@@ -45,7 +45,7 @@ function javascript() {
 
 function imagenes() {
     return src(paths.imagenes)
-        .pipe( cache(imagemin({ optimizationLevel: 3})))
+        // .pipe( cache(imagemin({ optimizationLevel: 3})))
         .pipe( dest('public/build/img'))
 }
 
