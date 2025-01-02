@@ -646,6 +646,24 @@ h3 {
   display: none;
 }
 
+.alerta {
+  padding: 1.5rem 1.5rem 1.5rem 3rem;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.alerta--error {
+  background-color: #ffdcdc;
+  border-left: 5px solid rgb(169, 0, 0);
+  color: rgb(169, 0, 0);
+}
+.alerta--exito {
+  background-color: rgb(19.1538461538, 252.8461538462, 19.1538461538);
+  border-left: 5px solid rgb(0.6153846154, 67.3846153846, 0.6153846154);
+  color: rgb(0.6153846154, 67.3846153846, 0.6153846154);
+}
+
 .auth {
   width: min(95%, 70rem);
   margin: 0 auto;
