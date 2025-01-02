@@ -8,13 +8,62 @@ use Model\Usuario;
 use MVC\Router;
 
 class AuthController {
+    private static function auth() {
+        session_start();
+
+        if(isset($_SESSION['id'])) {
+            header('Location: /');
+            exit;
+        }     
+    }
+
+
     public static function login(Router $router) {
+        static::auth();
+        $alertas = [];
+        $email = '';
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = new Usuario([
+                'email' => $_POST['email'],
+                'password' => $_POST['password']
+            ]);
+
+            $email = $usuario->email;
+
+            $alertas = $usuario->validarLogin();
+
+            if(!isset($alertas['error'])) {
+                $auth = Usuario::where('email', $email);
+
+                if(!$auth || !password_verify($usuario->password, $auth->password) || $auth->confirmado === 0) {
+                    $alertas['error'][] = 'Email o contraseña incorrectas, o cuenta no confirmada';
+                } else {
+                    session_start();
+                    $_SESSION['id'] = $auth->id;
+                    $_SESSION['nombre'] = $auth->nombre;
+                    $_SESSION['apellido'] = $auth->apellido;
+                    $_SESSION['admin'] = $auth->admin;
+                    
+                    if($auth->admin === 1)
+                        return header('Location: /admin/dashboard');
+                    
+                    header('Location: /finalizar-registro');
+
+                }
+
+            }
+        }
+
         $router->render('auth/login', [
-            'titulo' => 'Iniciar Sesión'
+            'titulo' => 'Iniciar Sesión',
+            'alertas' => $alertas,
+            'email' => $email
         ]);
     }
 
     public static function registro(Router $router) {
+        static::auth();
+        
         $alertas = [];
         $usuario = new Usuario();
         
@@ -61,6 +110,8 @@ class AuthController {
     }
 
     public static function olvide(Router $router) {
+        static::auth();
+
         $alertas = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -91,12 +142,16 @@ class AuthController {
     }
 
     public static function mensaje(Router $router) {
+        static::auth();
+
         $router->render('auth/mensaje', [
             'titulo' => 'Confirma tu cuenta'
         ]);
     }
 
     public static function confirmar(Router $router) {
+        static::auth();
+
         $token = s($_GET['token']);
         
         if(!$token)
@@ -126,6 +181,8 @@ class AuthController {
     }
 
     public static function reestablecer(Router $router) {
+        static::auth();
+
         $token = s($_GET['token']);
 
         if(!$token)

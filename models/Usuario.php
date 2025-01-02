@@ -63,6 +63,16 @@ class Usuario extends ActiveRecord {
         return self::$alertas;
     }
 
+    public function validarLogin(): array {
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
+            self::$alertas['error'][] = 'Ingrese un email valido';
+
+        if(strlen($this->password) < 8)
+            self::$alertas['error'][] = 'La contraseña debe tener minimo 8 caracteres';
+
+        return self::$alertas;
+    }
+
     public function hashearPassword() {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
