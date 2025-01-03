@@ -7,6 +7,11 @@
     flex-direction: column;
     background-color: v.$gris-claro;
 
+    @include m.tablet { 
+        height: 100dvh;
+        overflow: hidden;
+    } 
+
     &__header {
         background-color: v.$gris-oscuro;
         padding: 2rem;
@@ -42,6 +47,10 @@
     &__grid {
         display: flex;
         flex: 1;
+
+        @include m.tablet { 
+            overflow: hidden;
+        } 
     }
 
     &__sidebar {
@@ -84,6 +93,7 @@
         font-size: 1.1rem;
         text-transform: uppercase;
         font-weight: v.$bold;
+        
     }
 
     &__contenido {
@@ -91,7 +101,36 @@
         width: 100%;
 
         @include m.tablet { 
-            padding: 1rem 5rem 3rem 5rem;
+            padding: 1rem 5rem 3rem 5rem;  
+            overflow-y: scroll; 
         } 
+    }
+
+    &__contenedor-boton {
+        margin-bottom: 5rem;
+        @include m.tablet { 
+            display: flex;
+            justify-content: flex-end;
+        } 
+    }
+
+    &__boton {
+        @include m.boton(v.$azul, v.$blanco);
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        @include m.tablet { 
+            width: 25rem;
+        } 
+    }
+
+    &__contenedor {
+        @include m.shadow;
+        background-color: v.$blanco;
+        border-radius: 1rem
+    }
+
+    &__formulario {
+        @extend .dashboard__contenedor;
+        @include m.contenedor-md;
     }
 }
