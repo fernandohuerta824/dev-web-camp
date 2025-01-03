@@ -61,6 +61,12 @@ class AuthController {
         ]);
     }
 
+    public static function logout(Router $router) {
+        session_start();
+        session_destroy();
+        header('Location: /');
+    }
+
     public static function registro(Router $router) {
         static::auth();
         
@@ -150,7 +156,6 @@ class AuthController {
     }
 
     public static function confirmar(Router $router) {
-        static::auth();
 
         $token = s($_GET['token']);
         
@@ -184,7 +189,7 @@ class AuthController {
         static::auth();
 
         $token = s($_GET['token']);
-
+        debug($token);
         if(!$token)
             return header('Location: /');
 

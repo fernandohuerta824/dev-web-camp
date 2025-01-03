@@ -42,7 +42,13 @@ class Router {
 
         ob_start();
         include __DIR__ . "/views/$view.php";
+        
         $contenido = ob_get_clean();
-        include __DIR__ . "/views/layout.php";
+        $url = strtok($_SERVER['REQUEST_URI'], '?') ?? '/';
+
+        if(str_contains($url, '/admin')) 
+            include __DIR__ . "/views/admin-layout.php";
+        else 
+            include __DIR__ . "/views/layout.php";
     }
 }

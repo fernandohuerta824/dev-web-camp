@@ -4,6 +4,11 @@ require_once '../utils/app.php';
 
 use MVC\Router;
 use Controller\AuthController;
+use Controller\DashboardController;
+use Controller\EventosController;
+use Controller\PonentesController;
+use Controller\RegalosController;
+use Controller\RegistradosController;
 
 $router = new Router();
 
@@ -11,7 +16,7 @@ $router = new Router();
 // Login
 $router->get('/login', [AuthController::class, 'login']);
 $router->post('/login', [AuthController::class, 'login']);
-// $router->post('/logout', [AuthController::class, 'logout']);
+$router->post('/logout', [AuthController::class, 'logout']);
 
 // Crear Cuenta
 $router->get('/registro', [AuthController::class, 'registro']);
@@ -28,6 +33,17 @@ $router->post('/reestablecer', [AuthController::class, 'reestablecer']);
 // Confirmación de Cuenta
 $router->get('/mensaje', [AuthController::class, 'mensaje']);
 $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
+
+//Area de administracion
+$router->get('/admin/dashboard', [DashboardController::class, 'index']);
+$router->get('/admin/ponentes', [PonentesController::class, 'index']);
+$router->get('/admin/eventos', [EventosController::class, 'index']);
+$router->get('/admin/registrados', [RegistradosController::class, 'index']);
+$router->get('/admin/regalos', [RegalosController::class, 'index']);
+
+
+
+
 
 
 $router->comprobarRutas();
