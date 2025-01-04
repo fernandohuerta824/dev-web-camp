@@ -4,55 +4,72 @@
     if(tasgInput) {
         const tagsDiv = document.querySelector('#tags');
         const tagsInputHidden = document.querySelector('[name="tags"]')
-        let tags = [];
+        const tagExito = document.querySelector('.alerta.alerta--exito');
 
-        const actualizarInputHidden = () => {
-            tagsInputHidden.value = tags.toString();
+        if(tagExito) {
+            setTimeout(() => tagExito.remove(), 5000);
         }
 
-        /**
-         * 
-         * @param {Event} e 
-         */
-        const eliminarTag = e => {
-            const tag = e.target.textContent;
+        let tags = !tagsInputHidden.value ? [] : tagsInputHidden.value.split(',');
+        console.log(tags);
+        mostrarTags();
 
-            tags = tags.filter(t => t !== tag )
+        function actualizarInputHidden() {
+            tagsInputHidden.value = tags.toString();
+        }
+        
+        /**
+         * Elimina un tag seleccionado.
+         * @param {Event} e Evento del clic.
+         */
+        function eliminarTag(e) {
+            const tag = e.target.textContent;
+        
+            tags = tags.filter(function(t) {
+                return t !== tag;
+            });
             e.target.remove();
             actualizarInputHidden();
         }
-
-        const mostrarTags = () => {
+        
+        /**
+         * Muestra los tags en la interfaz.
+         */
+        function mostrarTags() {
             tagsDiv.textContent = '';
-
-            tags.forEach(tag => {
+        
+            tags.forEach(function(tag) {
                 const tagLi = document.createElement('LI');
                 tagLi.classList.add('formulario__tag');
                 tagLi.textContent = tag;
                 tagLi.addEventListener('click', eliminarTag);
                 tagsDiv.appendChild(tagLi);
-            })
+            });
         }
-
+        
         /**
-         * 
-         * @param {Event} e 
+         * Guarda un tag al presionar una tecla específica (coma en este caso).
+         * @param {Event} e Evento de teclado.
          */
-        const guardarTag = e => {
-            if(e.keyCode !== 44) 
+        function guardarTag(e) {
+            if (e.keyCode !== 44) {
                 return;
+            }
+        
             e.preventDefault();
             const tag = tasgInput.value.trim();
-            if(!tag)
-                return
-            else {
-                tags = [...tags, tag];
-                mostrarTags();
-                actualizarInputHidden();
+        
+            if (!tag) {
+                return;
             }
-            
+        
+            tags = tags.concat(tag);
+            mostrarTags();
+            actualizarInputHidden();
+        
             tasgInput.value = '';
         }
+        
 
         tasgInput.addEventListener('keypress', guardarTag)
     }

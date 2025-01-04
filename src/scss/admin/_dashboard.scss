@@ -58,6 +58,10 @@
         width: auto;
     }
 
+    &__alertas {
+        @include m.contenedor-md;
+    }
+
     &__menu {
         display: flex;
         flex-direction: column;

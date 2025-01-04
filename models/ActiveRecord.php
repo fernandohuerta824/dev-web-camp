@@ -15,7 +15,7 @@ abstract class ActiveRecord {
     protected static array $alertas = [];
 
     public int $id;
-    public Imagen $imagen;
+    public Imagen|null $imagen;
  
     public static function setDB(mysqli $db) {
         self::$db = $db;
@@ -25,7 +25,7 @@ abstract class ActiveRecord {
         if(!empty(static::$alertas)) 
             return false;
         $atributos = $this->sanitizarAtributos();
-
+        
         $columnas = join(', ', array_keys($atributos));
 
         $valores = join("', '", array_values($atributos));
@@ -51,10 +51,10 @@ abstract class ActiveRecord {
     private function sanitizarAtributos(): array {
         $atributos = $this->atributos();
         foreach($atributos as $key => $value) {
-            // if($key === 'imagen') {
-                //     $atributos[$key] = $value->getNombreFinal();
-                //     continue;
-                // }
+            if($key === 'imagen') {
+                $atributos[$key] = $value->getNombreFinal();
+                continue;
+            }
                 
             if($key === 'id') 
                 continue;
@@ -94,17 +94,12 @@ abstract class ActiveRecord {
             $columnas = $registro;
     
             
-            $instancia = new static($columnas);
-    
             
-            if (isset($registro['imagen'])) {
-                $imagenValores = [
-                    'name' => $registro['imagen'],
-                    'size' => 1,
-                    'tmp_name' => $instancia->imagen->getRutaParaGuardar() . $registro['imagen']
-                ];
-                $instancia->imagen = $imagenValores; 
-            }
+            
+            // if (isset($registro['imagen'])) {
+            //     $$registro['imagen'] = new Imagen)
+            // }
+            $instancia = new static($columnas);
     
             $array[] = $instancia;
         }
@@ -181,7 +176,7 @@ abstract class ActiveRecord {
                     $this->$key = [];
                     break;
                 case 'object':
-                    $this->$key = null;
+                    $this->$key = new Imagen([]);
                     break; // Opcional: o puedes devolver una nueva instancia.
                 case 'boolean':
                     $this->$key = false;

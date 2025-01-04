@@ -711,6 +711,7 @@ h3 {
   margin: 1rem 0;
   font-size: 1.3rem;
   font-weight: 700;
+  letter-spacing: 0.2rem;
 }
 .alerta--error {
   background-color: #ffdcdc;
@@ -794,6 +795,10 @@ h3 {
 .dashboard__sidebar {
   background-color: rgb(47.191011236, 64.4943820225, 92.808988764);
   width: auto;
+}
+.dashboard__alertas {
+  width: min(95%, 80rem);
+  margin: 0 auto;
 }
 .dashboard__menu {
   display: flex;

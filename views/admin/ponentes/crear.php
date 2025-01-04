@@ -7,9 +7,11 @@
          Volver
     </a>
 </div>
+<div class="dashboard__alertas">
+    <?php include __DIR__ . '/../../template/alertas.php' ?>
+</div>
 
 <div class="dashboard__formulario">
-    <?php include __DIR__ . '/../../template/alertas.php' ?>
 
     <form method="post" class="formulario" enctype="multipart/form-data">
         <?php include __DIR__ . '/formulario.php' ?>
