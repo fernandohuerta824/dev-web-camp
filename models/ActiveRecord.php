@@ -4,6 +4,7 @@ namespace Model;
 
 use Model\Imagen as Imagen;
 use mysqli;
+use Model\PonenteImagen;
 
 abstract class ActiveRecord {
     protected static mysqli $db;
@@ -96,11 +97,13 @@ abstract class ActiveRecord {
             
             
             
-            // if (isset($registro['imagen'])) {
-            //     $$registro['imagen'] = new Imagen)
-            // }
+            if (isset($registro['imagen'])) {
+                $clase = static::class . 'Imagen';
+                
+                $columnas['imagen'] = new $clase(['name' => $registro['imagen']], false);
+ 
+            }
             $instancia = new static($columnas);
-    
             $array[] = $instancia;
         }
 

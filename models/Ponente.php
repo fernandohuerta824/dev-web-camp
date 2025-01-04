@@ -26,7 +26,7 @@ class Ponente extends ActiveRecord {
     }
 
 
-    public function validar() {
+    public function validar($isEditing = false) {
         if(!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre es Obligatorio';
         }
@@ -39,7 +39,7 @@ class Ponente extends ActiveRecord {
         if(!$this->pais) {
             self::$alertas['error'][] = 'El Campo País es Obligatorio';
         }
-        if(!$this->imagen->image) {
+        if(!$this->imagen->image && !$isEditing) {
             self::$alertas['error'][] = 'La imagen es obligatoria';
         } else if(!$this->imagen->validarTamanio())
             self::$alertas['error'][] = 'La imagen es muy grande';

@@ -15,6 +15,6 @@
     <form method="post" class="formulario" enctype="multipart/form-data">
         <?php include __DIR__ . '/formulario.php' ?>
 
-        <input class="formulario__submit" type="submit" value="Registrar Ponente">
+        <input class="formulario__submit" type="submit" value="Actualizar  Ponente">
     </form>
 </div>

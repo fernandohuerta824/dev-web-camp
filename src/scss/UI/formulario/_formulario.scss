@@ -72,4 +72,11 @@
     &__listado {
         @include m.tags;
     }
+
+    &__imagen {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 40rem;
+        display: block;
+    }
 }

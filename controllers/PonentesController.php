@@ -20,8 +20,11 @@ class PonentesController {
 
     public static function index(Router $router) {
         static::auth();
+        $ponentes = Ponente::todos();
+
         $router->render('admin/ponentes/index', [
-            'titulo' => 'Ponentes / Conferencista'
+            'titulo' => 'Ponentes / Conferencista',
+            'ponentes' => $ponentes,
         ]);
     }
 
@@ -45,6 +48,7 @@ class PonentesController {
                     $alertas['exito'][] = 'Ponente guardado correctamente';
                 } catch(\Exception $e) {
                     $ponente->imagen->borrar();
+                    $ponente->borrar();
                     $alertas['error'][] = $e->getMessage();
                 }
 
@@ -57,4 +61,50 @@ class PonentesController {
         ]);
     }
     
+    public static function editar(Router $router) {
+        static::auth();
+        $id = $_GET['id'] ?? 0;
+        $ponente = Ponente::encontrarPorID($id);
+        $alertas = [];
+        if(!$ponente)
+            return header('Location: /admin/ponentes');
+        $imagenActual = $ponente->imagen;
+
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $imagen = new PonenteImagen($_FILES['imagen']);
+            $_POST['imagen'] = $imagen;
+            $_POST['redes']  = json_encode($_POST['redes'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            $ponente->sincronizar($_POST);
+            $alertas = $ponente->validar(true);
+
+            if(!isset($alertas['error'])) {
+                $isNewImage = $imagen->name ? true : false;
+                
+                try {
+                    if($isNewImage) {
+                        $ponente->imagen->guardar(800, 800, false, true, true, true);
+                        $imagenActual->borrar();
+                    } else {
+                        $ponente->imagen = $imagenActual;
+                    }
+                    $ponente->guardar();
+                    $alertas['exito'][] = 'Ponente actualizado correctamente';
+                    $imagenActual = $ponente->imagen;
+                } catch(\Exception $e) {
+                    if($isNewImage) 
+                        $ponente->imagen->borrar();
+                    $alertas['error'][] = $e->getMessage();
+                }
+            }
+
+            
+        }
+        $router->render('admin/ponentes/editar', [
+            'titulo' => 'Editar informacion de ' . $ponente->nombre,
+            'ponente' => $ponente,
+            'alertas' => $alertas,
+            'imagenActual' => $imagenActual
+        ]);
+    }
 }

@@ -21,17 +21,27 @@ class Imagen {
     public string $tmpPath;
     public int $size;
 
-    public function __construct(array $args = []) {
-
-        $this->tmpPath = $args['tmp_name'] ?? '';
+    public function __construct(array $args = [], bool $isNew = true) {
+        if($isNew)
+            $this->tmpPath = $args['tmp_name'] ?? '';
+        else 
+            $this->tmpPath = static::$rutaParaGuardar . $args['name'] . '.png';
         
         $this->fullName = $args['name'] ?? '';
         
-        $this->name = substr($args['name'], 0, strpos($args['name'], '.'));
+        if($isNew)
+            $this->name = substr($args['name'], 0, strpos($args['name'], '.'));
+        else
+            $this->name = $args['name'] ?? '';
+        if($isNew)
+            $this->extension = substr($args['name'], strpos($args['name'], '.') + 1);
+        else
+            $this->extension = 'png';
         
-        $this->extension = substr($args['name'], strpos($args['name'], '.') + 1);
-        
-        $this->nombreFinal = md5(uniqid(rand(), true));
+        if($isNew)
+            $this->nombreFinal = md5(uniqid(rand(), true));
+        else 
+            $this->nombreFinal = $args['name'];
         
         $this->size = $args['size'] ?? 0;
         if(!is_file($this->tmpPath))
@@ -86,7 +96,7 @@ class Imagen {
         return $this->nombreFinal;
     }
 
-    public function getRutaParaGuardar(): string {
+    public static function getRutaParaGuardar(): string {
         return static::$rutaParaGuardar;
     }
 

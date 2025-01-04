@@ -130,7 +130,8 @@
     &__contenedor {
         @include m.shadow;
         background-color: v.$blanco;
-        border-radius: 1rem
+        border-radius: 1rem;
+        padding: 1.5rem;
     }
 
     &__formulario {

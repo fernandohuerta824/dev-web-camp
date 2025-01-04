@@ -11,7 +11,6 @@
         }
 
         let tags = !tagsInputHidden.value ? [] : tagsInputHidden.value.split(',');
-        console.log(tags);
         mostrarTags();
 
         function actualizarInputHidden() {

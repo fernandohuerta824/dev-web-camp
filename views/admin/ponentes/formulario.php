@@ -59,6 +59,30 @@
             accept="image/*"
         >
     </div>
+
+    <?php if($imagenActual->nombreFinal) : ?>
+        <p>Foto Actual de <?php echo $ponente->nombre ?></p>
+        <picture>
+            <source 
+                srcset="<?php echo '/imagenes/ponentes/' . $imagenActual->nombreFinal?>.webp" 
+                type="image/webp"
+            >
+            <source 
+                srcset="<?php echo '/imagenes/ponentes/' . $imagenActual->nombreFinal?>.avif" 
+                type="image/avif"
+            >
+            <img 
+                class="formulario__imagen"
+                loading="lazy" 
+                src="<?php echo '/imagenes/ponentes/' . $imagenActual->nombreFinal?>.png" 
+                width="500"
+                height="300" 
+                alt="<?php echo $ponente->nombre ?>"
+                title="<?php echo $ponente->nombre ?>"
+            >
+        </picture>
+    <?php endif ?>
+    
 </fieldset>
 
 <fieldset class="formulario__fieldset">
