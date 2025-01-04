@@ -107,4 +107,18 @@ class PonentesController {
             'imagenActual' => $imagenActual
         ]);
     }
+
+    public static function eliminar() {
+        static::auth();
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? 0;
+            $ponente = Ponente::encontrarPorID($id);
+            if(!$ponente)
+                return header('Location: /admin/ponentes');
+            
+            $ponente->borrar();
+            return header('Location: /admin/ponentes');
+        }
+
+    }
 }

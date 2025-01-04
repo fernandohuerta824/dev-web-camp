@@ -33,11 +33,12 @@
                                 Editar
                             </a>
 
-                            <form class="tabla__formulario">
+                            <form method="POST" action="/admin/ponentes/eliminar" class="tabla__formulario">
                                 <button class="tabla__accion tabla__accion--eliminar" type="submit">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                     Eliminar
                                 </button>
+                                <input type="hidden" name="id" value="<?php echo $ponente->id ?>">
                             </form>
                         </td>
                     </tr>
