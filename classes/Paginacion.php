@@ -80,6 +80,9 @@ class Paginacion {
     }
 
     public function numeroPaginas() {
+
+        if($this->registroPorPagina >= $this->totalRegistros)
+            return '';
         $html = '';
         $mitad = floor($this->pivoteNumeros / 2);
         $inicio = intval(
@@ -100,7 +103,7 @@ class Paginacion {
                 )
         );
         
- 
+        
         for($i = $inicio; $i <= $fin && $i <= $this->totalPaginas(); $i++) {
             if($this->paginaActual === $i)
                 $html .= "<span class='paginacion__numero paginacion__numero--actual'>$i</span>";
