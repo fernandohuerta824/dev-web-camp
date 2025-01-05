@@ -101,7 +101,7 @@ class Paginacion {
         );
         
  
-        for($i = $inicio; $i <= $fin; $i++) {
+        for($i = $inicio; $i <= $fin && $i <= $this->totalPaginas(); $i++) {
             if($this->paginaActual === $i)
                 $html .= "<span class='paginacion__numero paginacion__numero--actual'>$i</span>";
             else
