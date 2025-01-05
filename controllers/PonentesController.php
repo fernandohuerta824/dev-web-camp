@@ -21,7 +21,7 @@ class PonentesController {
 
     public static function index(Router $router) {
         static::auth();
-        $registroPorPagina = 5;
+        $registroPorPagina = 3;
         $totalRegistros = Ponente::totalDeRegistros();
         $paginaActual =  intval($_GET['page']);
 

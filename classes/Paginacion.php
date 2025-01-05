@@ -83,14 +83,14 @@ class Paginacion {
         $html = '';
         $mitad = floor($this->pivoteNumeros / 2);
         $inicio = intval(
-            $this->paginaActual - $mitad < 1 ? 
+            $this->paginaActual - $mitad <= 1 ? 
                 1 : 
                 ($this->paginaActual + $mitad > $this->totalPaginas() ?
-                    $this->totalPaginas() - $this->pivoteNumeros + 1 :
+                    ($this->totalPaginas() - $this->pivoteNumeros + 1 <= 1 ? 1 : $this->totalPaginas() - $this->pivoteNumeros + 1):
                     $this->paginaActual - $mitad
                 )
         );
-
+        // debug($this->paginaActual - $mitad);
         $fin = intval(
             $this->paginaActual - $mitad < 1 ? 
                 $this->pivoteNumeros : 
