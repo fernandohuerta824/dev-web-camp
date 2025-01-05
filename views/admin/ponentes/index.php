@@ -49,3 +49,5 @@
     <?php endif ?>
     
 </div>
+
+<?php echo $paginacion ?>

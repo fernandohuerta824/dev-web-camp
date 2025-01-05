@@ -131,6 +131,17 @@ abstract class ActiveRecord {
         return self::consultar($consulta);
     }
 
+    public static function totalDeRegistros(): int {
+        $resultado = self::$db->query('SELECT count(*) as totalRegistros FROM ' . static::$tabla);
+        $numero = (int)$resultado->fetch_assoc()['totalRegistros'];
+        return $numero;
+    }
+
+    public static function paginar(int $porPagina, int $offset) : array {
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT $porPagina offset $offset";
+        return self::consultar($query);
+    }
+
     public static function where(string $columna, string $valor): ActiveRecord|null {
         $valorQuery = self::$db->real_escape_string($valor);
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valorQuery' LIMIT 1";

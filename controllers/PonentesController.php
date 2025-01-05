@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Class\Paginacion;
 use Exception;
 use Model\Imagen;
 use Model\Ponente;
@@ -20,11 +21,18 @@ class PonentesController {
 
     public static function index(Router $router) {
         static::auth();
-        $ponentes = Ponente::todos();
+        $registroPorPagina = 1;
+        $totalRegistros = Ponente::totalDeRegistros();
+        $paginaActual =  intval($_GET['page']);
 
+        $paginacion = new Paginacion($paginaActual, $registroPorPagina, $totalRegistros);
+
+        $ponentes = Ponente::paginar($paginacion->registroPorPagina, $paginacion->offset());
+        
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencista',
             'ponentes' => $ponentes,
+            'paginacion' => $paginacion->paginacion()
         ]);
     }
 

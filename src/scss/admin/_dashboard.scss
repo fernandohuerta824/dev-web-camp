@@ -17,6 +17,10 @@
         padding: 2rem;
     }
 
+    &__heading {
+        margin-top: 2rem;
+    }
+
     &__header-grid {
         display: flex;
         flex-direction: column;
@@ -111,7 +115,7 @@
     }
 
     &__contenedor-boton {
-        margin-bottom: 5rem;
+        margin-bottom: 3rem;
         @include m.tablet { 
             display: flex;
             justify-content: flex-end;
