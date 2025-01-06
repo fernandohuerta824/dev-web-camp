@@ -94,9 +94,6 @@ abstract class ActiveRecord {
         while ($registro = $resultado->fetch_assoc()) {
             $columnas = $registro;
     
-            
-            
-            
             if (isset($registro['imagen'])) {
                 $clase = static::class . 'Imagen';
                 
@@ -104,6 +101,7 @@ abstract class ActiveRecord {
  
             }
             $instancia = new static($columnas);
+            
             $array[] = $instancia;
         }
 
@@ -117,7 +115,6 @@ abstract class ActiveRecord {
 
     public static function todos(): array {
         $query = "SELECT * FROM " . static::$tabla;
-
         return self::consultar($query);
     }
 
@@ -146,6 +143,16 @@ abstract class ActiveRecord {
         $valorQuery = self::$db->real_escape_string($valor);
         $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valorQuery' LIMIT 1";
         return self::consultar($query)[0] ?? null;
+    }
+
+    public static function whereArray(array $array = []): array {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ";
+        foreach($array as $key => $value) {
+            $query .= "$key = '$value' AND ";
+        }
+        $query = substr($query, 0, -5);
+
+        return self::consultar($query);
     }
     
     public static function belongsTo(string $columna, string $valor): array {

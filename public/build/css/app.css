@@ -387,15 +387,16 @@ h3 {
   font-size: 1.8rem;
   color: rgba(26, 27, 21, 0.8);
 }
-.formulario__input {
+.formulario__input, .formulario__select, .formulario__textarea {
   padding: 1rem;
+  resize: none;
   border: 1px solid rgb(57.3221757322, 66.4937238494, 79.6778242678);
   border-radius: 0.5rem;
 }
-.formulario__input--file {
+.formulario__input--file, .formulario__select--file, .formulario__textarea--file {
   border: none;
 }
-.formulario__input--social {
+.formulario__input--social, .formulario__select--social, .formulario__textarea--social {
   border-radius: 0 0.5rem 0.5rem 0;
   width: 100%;
 }
@@ -466,6 +467,44 @@ h3 {
   color: #1a1b15;
   font-size: 1.6rem;
   font-weight: 300;
+}
+
+.horas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 768px) {
+  .horas {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.horas__hora {
+  color: #007df4;
+  border: 1px solid #007df4;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+.horas__hora:hover {
+  transform: scale(0.9);
+}
+.horas__hora--seleccionada {
+  background-color: #007df4;
+  color: #FFFFFF;
+}
+.horas__hora--deshabilitada {
+  border: 1px solid #64748B;
+  color: #64748B;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .header {
@@ -975,5 +1014,30 @@ h3 {
 }
 .paginacion__numero--actual {
   color: #1E293B;
+}
+
+.listado-ponentes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+.listado-ponentes__ponente {
+  color: #007df4;
+  border: 1px solid #007df4;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+.listado-ponentes__ponente:hover {
+  transform: scale(0.9);
+}
+.listado-ponentes__ponente--seleccionado {
+  background-color: #007df4;
+  color: #FFFFFF;
 }
 /*# sourceMappingURL=app.css.map */

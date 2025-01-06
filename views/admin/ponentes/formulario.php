@@ -2,7 +2,7 @@
     <legend class="formulario__legend">Informacion Personal</legend>
 
     <div class="formulario__campo">
-        <label for="nombre">Nombre</label>
+        <label class="formulario__label" for="nombre">Nombre</label>
         <input 
             type="text"
             class="formulario__input"
@@ -14,7 +14,7 @@
     </div>
 
     <div class="formulario__campo">
-        <label for="apellido">Apellido</label>
+        <label class="formulario__label" for="apellido">Apellido</label>
         <input 
             type="text"
             class="formulario__input"
@@ -26,7 +26,7 @@
     </div>
 
     <div class="formulario__campo">
-        <label for="ciudad">Ciudad</label>
+        <label class="formulario__label" for="ciudad">Ciudad</label>
         <input 
             type="text"
             class="formulario__input"
@@ -38,7 +38,7 @@
     </div>
 
     <div class="formulario__campo">
-        <label for="pais">Pais</label>
+        <label class="formulario__label" for="pais">Pais</label>
         <input 
             type="text"
             class="formulario__input"
@@ -50,7 +50,7 @@
     </div>
 
     <div class="formulario__campo">
-        <label for="imagen">Imagen</label>
+        <label class="formulario__label" for="imagen">Imagen</label>
         <input 
             type="file"
             class="formulario__input--file"
@@ -89,7 +89,7 @@
     <legend class="formulario__legend">Informacion Extra</legend>
 
     <div class="formulario__campo">
-        <label for="tags-input">Areas de experiencias separadas por coma</label>
+        <label class="formulario__label" for="tags-input">Areas de experiencias separadas por coma</label>
         <input 
             type="text"
             class="formulario__input"

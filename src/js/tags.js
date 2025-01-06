@@ -1,4 +1,4 @@
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     const tasgInput = document.querySelector('#tags-input');
     
     if(tasgInput) {
@@ -72,4 +72,4 @@
 
         tasgInput.addEventListener('keypress', guardarTag)
     }
-})()
+})

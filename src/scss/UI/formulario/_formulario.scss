@@ -36,8 +36,11 @@
         color: rgba($color: v.$negro, $alpha: .8);
     }
 
-    &__input {
+    &__input,
+    &__select,
+    &__textarea {
         padding: 1rem;
+        resize: none;
         border: 1px solid darken($color: v.$gris, $amount: 20);
         border-radius: .5rem;
         
