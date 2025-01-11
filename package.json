@@ -4,12 +4,14 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", "dev": "gulp dev"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^7.1.2",
     "cssnano": "^5.1.10",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
@@ -27,6 +29,11 @@
     "gulp-terser-js": "^5.2.2",
     "gulp-webp": "^4.0.1",
     "sass": "^1.41.1",
+    "style-loader": "^4.0.0",
     "terser": "^5.14.2"
+  },
+  "dependencies": {
+    "swiper": "^11.2.1",
+    "webpack-stream": "^7.0.0"
   }
 }

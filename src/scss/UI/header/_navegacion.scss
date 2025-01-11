@@ -11,13 +11,16 @@
 
     &__enlace {
         color: v.$blanco;
-        font-size: 2.2rem;
+        font-size: 2rem;
         padding: 2rem;
         transition: ease .3s;
         font-weight: v.$black;
         text-transform: uppercase;
         text-align: center;
+        display: grid;
+        place-content: center;
 
+        &--actual,
         &:hover {
             background-color: v.$blanco;
             color: v.$azul;

@@ -1,0 +1,105 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.agenda {
+    @include m.contenedor;
+    
+    @include m.tablet { 
+        padding: 5rem;
+        
+    } 
+}
+
+.eventos {
+    $modificador: &;
+
+    &__heading {
+        color: v.$azul;
+        margin: 5rem 0;
+        text-align:  left;
+        @include m.texto-fluido(2rem, 8vw, 6rem);
+    }
+    
+    &__fecha {
+        color: v.$gris;
+        margin: 3rem 0 1rem 0;
+    }
+    
+    &--workshops {
+        #{$modificador}__heading {
+            color: darken($color: v.$secundario, $amount: 10);
+        }
+
+        .evento__informacion {
+            background-color: darken($color: v.$secundario, $amount: 10);
+            &:hover {
+                background-color: darken($color: v.$secundario, $amount: 20);
+            }
+        }
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: rgba($color: v.$negro, $alpha: .5);
+    }
+}
+
+.evento {
+
+    &__nombre {
+        font-size: 2rem;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+    
+    &__hora {
+        font-weight: v.$bold;
+    }
+
+    &__informacion {
+        padding: 2rem;
+        border-radius: 1rem;
+        background-color: v.$azul;
+        color: v.$blanco;
+        height: 20rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &:hover {
+            background-color: darken($color: v.$azul, $amount: 10);
+        }
+    }
+
+    &__descripcion {
+        color: v.$blanco;
+        font-size: 1.6rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        text-align: left;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+
+    &__ponente {
+        display: flex;
+        gap: 2rem;
+        justify-content: space-between;
+        // align-items: flex-end;
+        // flex: 1;
+    }
+
+    &__imagen-autor {
+        width: 5rem;
+        background-color: v.$blanco;
+        border-radius: 50%;
+    }
+
+    &__ponente-nombre {
+        font-weight: v.$bold;
+    }
+}

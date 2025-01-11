@@ -154,6 +154,11 @@ abstract class ActiveRecord {
 
         return self::consultar($query);
     }
+
+    public static function ordenar(string $columna, string $orden = 'ASC') {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY $columna $orden";
+        return self::consultar($query);
+    }
     
     public static function belongsTo(string $columna, string $valor): array {
         $valorQuery = self::$db->real_escape_string($valor);
