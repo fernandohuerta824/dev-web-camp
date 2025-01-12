@@ -12,8 +12,29 @@ use MVC\Router;
 
 class PaginasController {
     public static function index(Router $router) {
+        $eventos = Evento::ordenar('hora_id');
+
+        $eventosFormateados = [];
+        foreach($eventos as $e) {
+            $e->categoria = Categoria::encontrarPorID($e->categoria_id);
+            $e->hora = Hora::encontrarPorID($e->hora_id);
+            $e->dia = Dia::encontrarPorID($e->dia_id);
+            $e->ponente = Ponente::encontrarPorID($e->ponente_id);
+            $eventosFormateados["dia_$e->dia_id"]["categoria_$e->categoria_id"][] = $e;
+        }
+
+        $ponentesTotal = Ponente::totalDeRegistros();
+        $conferenciasTotal = Evento::totalDeRegistros('categoria_id', 1);
+        $workshopsTotal = Evento::totalDeRegistros('categoria_id', 2);
+
+        $ponentes = Ponente::todos('DESC');
         $router->render('paginas/index', [
-            'titulo' => 'Inicio'
+            'titulo' => 'Inicio',
+            'eventos' => $eventosFormateados,
+            'ponentesTotal' => $ponentesTotal,
+            'conferenciasTotal' => $conferenciasTotal,
+            'workshopsTotal' => $workshopsTotal,
+            'ponentes' => $ponentes
         ]);
     }
 

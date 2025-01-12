@@ -113,8 +113,8 @@ abstract class ActiveRecord {
         return static::$alertas;
     }   
 
-    public static function todos(): array {
-        $query = "SELECT * FROM " . static::$tabla;
+    public static function todos(string $orden = 'ASC'): array {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id $orden";
         return self::consultar($query);
     }
 
@@ -128,8 +128,11 @@ abstract class ActiveRecord {
         return self::consultar($consulta);
     }
 
-    public static function totalDeRegistros(): int {
-        $resultado = self::$db->query('SELECT count(*) as totalRegistros FROM ' . static::$tabla);
+    public static function totalDeRegistros(string $columna = '', string $valor = ''): int {
+        $query = 'SELECT count(*) as totalRegistros FROM ' . static::$tabla;
+        if($columna)
+            $query .= " WHERE $columna = $valor"; 
+        $resultado = self::$db->query($query);
         $numero = (int)$resultado->fetch_assoc()['totalRegistros'];
         return $numero;
     }

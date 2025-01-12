@@ -1,0 +1,7 @@
+@use "base/mixins" as m;
+
+#mapa {
+    @include m.contenedor;
+    height: 45rem;
+    margin-top: 5rem;
+}

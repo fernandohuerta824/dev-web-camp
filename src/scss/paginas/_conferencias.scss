@@ -38,6 +38,10 @@
         }
     }
 
+    &__animation-wrapper {
+        overflow: hidden;
+    }
+
     .swiper-button-next,
     .swiper-button-prev {
         color: rgba($color: v.$negro, $alpha: .5);
@@ -65,7 +69,7 @@
         border-radius: 1rem;
         background-color: v.$azul;
         color: v.$blanco;
-        height: 20rem;
+        height: 18rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -82,7 +86,7 @@
         -webkit-box-orient: vertical;
         text-align: left;
         overflow: hidden;
-        margin-bottom: 0;
+        margin: 0;
     }
 
     &__ponente {

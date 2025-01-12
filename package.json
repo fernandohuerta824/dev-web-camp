@@ -33,6 +33,7 @@
     "terser": "^5.14.2"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "swiper": "^11.2.1",
     "webpack-stream": "^7.0.0"
   }

@@ -26,7 +26,7 @@
             
         </nav>
 
-        <div class="header__contenido">
+        <div class="header__contenido" data-aos="fade-up">
             <a href="/">
                 <h1 class="header__logo">&#60;DevWebCamp/&#62;</h1>
             </a>
