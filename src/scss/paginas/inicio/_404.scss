@@ -1,0 +1,14 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+
+.pagina-404 {
+
+    &__contenedor {
+        text-align: center;
+    }
+    &__enlace {
+        @include m.boton(v.$azul, v.$blanco);
+        width: auto;
+    }
+}

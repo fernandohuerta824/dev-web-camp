@@ -3,7 +3,7 @@
 
     <p class="devwebcamp__descripcion">Conoce la conferencia mas importante de latinoamerica</p>
 
-    <div class="devwebcamp__grid">
+    <div class="devwebcamp__grid" data-aos="<?php echo aos_animation() ?>">
         <div class="devwebcamp__imagen">
             <picture>
                 <source srcset="build/img/sobre_devwebcamp.avif" type="image/avif">
@@ -12,7 +12,7 @@
             </picture>
         </div>
 
-        <div class="devwebcamp__contenido">
+        <div class="devwebcamp__contenido" data-aos="<?php echo aos_animation() ?>">
             <p class="devwebcamp__texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum iure maxime commodi assumenda doloribus aliquid neque debitis adipisci iusto illum ratione quidem nulla labore vitae excepturi repellat odit, delectus sit.
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus in soluta quod nesciunt corrupti expedita, vitae ducimus error cupiditate, illum excepturi voluptatem ipsam porro labore similique tempore qui magni fuga!
             </p>

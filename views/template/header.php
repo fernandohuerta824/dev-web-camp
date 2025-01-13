@@ -1,7 +1,10 @@
 <header class="header">
     <div class="header__contenedor">
         <nav class="header__navegacion">
-            <?php 
+            <?php
+
+            use Model\Registro;
+
             session_start();
             if(!isset($_SESSION['id'])) : 
             ?>
@@ -34,7 +37,20 @@
             <p class="header__texto">OCTUBRE 5-6 - 2023</p>
             <p class="header__texto header__texto--modalidad">En linea - Presencia</p>
 
-            <a href="/registro" class="header__boton">Comprar pase</a>
+            <?php   
+            if(!$_SESSION['id']) :
+            ?>
+                <a href="/registro" class="header__boton">Comprar pase</a>
+            <?php 
+            else :
+                $registro = Registro::where('usuario_id', $_SESSION['id']); 
+                if(!$registro):  
+            ?>
+                <a href="/finalizar-registro" class="header__boton">Comprar pase</a>
+                <?php else : ?>
+                    <a href="/boleto?id=<?php echo $registro->token ?>" class="header__boton">Ver Boleto</a>
+                <?php endif ?>
+            <?php endif ?>
         </div>
     </div>
 </header>
@@ -51,7 +67,20 @@
             <a href="/devwebcamp" class="navegacion__enlace<?php echo paginaActual('/devwebcamp') ? ' navegacion__enlace--actual' : '' ?>">Eventos</a>
             <a href="/paquetes" class="navegacion__enlace<?php echo paginaActual('/paquetes') ? ' navegacion__enlace--actual' : '' ?>">Paquetes</a>
             <a href="/workshop" class="navegacion__enlace<?php echo paginaActual('/workshop') ? ' navegacion__enlace--actual' : '' ?>">Workshops / Conferencias</a>
-            <a href="/registro" class="navegacion__enlace<?php echo paginaActual('/registro') ? ' navegacion__enlace--actual' : '' ?>">Comprar Pase</a>
+            <?php   
+            if(!$_SESSION['id']) :
+            ?>
+                <a href="/registro" class="navegacion__enlace<?php echo paginaActual('/registro') ? ' navegacion__enlace--actual' : '' ?>">Comprar pase</a>
+            <?php 
+            else :
+                $registro = Registro::where('usuario_id', $_SESSION['id']); 
+                if(!$registro):  
+            ?>
+                <a href="/finalizar-registro" class="navegacion__enlace<?php echo paginaActual('/finalizar-registro') ? ' navegacion__enlace--actual' : '' ?>">Comprar pase</a>
+                <?php else : ?>
+                    <a href="/boleto?id=<?php echo $registro->token ?>" class="navegacion__enlace<?php echo paginaActual('/boleto') ? ' navegacion__enlace--actual' : '' ?>">Ver Boleto</a>
+                <?php endif ?>
+            <?php endif ?>
         </nav>
     </div>
 </div>

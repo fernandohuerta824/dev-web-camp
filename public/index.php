@@ -12,6 +12,7 @@ use Controller\PaginasController;
 use Controller\PonentesController;
 use Controller\RegalosController;
 use Controller\RegistradosController;
+use Controller\RegistroController;
 
 $router = new Router();
 
@@ -36,6 +37,12 @@ $router->post('/reestablecer', [AuthController::class, 'reestablecer']);
 // Confirmación de Cuenta
 $router->get('/mensaje', [AuthController::class, 'mensaje']);
 $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
+
+//Registro de usuario
+$router->get('/finalizar-registro', [RegistroController::class, 'crear']);
+$router->post('/finalizar-registro/gratis', [RegistroController::class, 'gratis']);
+$router->get('/boleto', [RegistroController::class, 'boleto']);
+
 
 //Area de administracion
 $router->get('/admin/dashboard', [DashboardController::class, 'index']);

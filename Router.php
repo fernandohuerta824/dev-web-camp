@@ -33,7 +33,7 @@ class Router {
             return call_user_func($fn, $this);
 
         http_response_code(404);     
-        $this->render('404', ['titulo' => '404']);  
+        $this->render('404', ['titulo' => 'Error 404: Pagina no encontrada']);  
     }
 
     public function render(string $view, array $args = []) {
