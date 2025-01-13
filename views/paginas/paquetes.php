@@ -25,6 +25,7 @@
             </ul>
 
             <div class="paquete__precio">$199</div>
+            
         </div>
 
 

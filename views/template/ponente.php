@@ -41,8 +41,8 @@
                 </a>
                 <?php endif ?>
 
-                <?php if(!empty($redes['youTube'])) :?>
-                <a class="speaker__enlace" rel="noopener noreferrer" target="_blank" href="https://<?php echo $redes['youTube'] ?>">
+                <?php if(!empty($redes['youtube'])) :?>
+                <a class="speaker__enlace" rel="noopener noreferrer" target="_blank" href="<?php echo $redes['youtube'] ?>">
                     <span class="speaker__ocultar">YouTube</span>
                 </a>
                 <?php endif ?>

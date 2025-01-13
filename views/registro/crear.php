@@ -30,9 +30,43 @@
 
             <div class="paquete__precio">$199</div>
 
-            <form action="/finalizar-registro/presencial" method="post">
-                <input class="paquetes__submit" type="submit" value="Inscripcion Presencial">
-            </form>
+            <script src="https://www.paypal.com/sdk/js?client-id=AX7oaKEWGaBj42r4kubhc-x8WuawrB5zze-B6LMomNUuZoSMxr5dLJrNwugcQZY_aeXlxw5i5xs3MnrR"></script>
+            <div id="paypal-button-container"></div>
+
+            <script>
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: '199.00' // Monto que deseas cobrar (en formato decimal)
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            (async function(){
+                                const formData = new FormData();
+                                formData.append('pago_id',details.purchase_units[0].payments.captures[0].id )
+                                   
+                                const resultado = await fetch('/finalizar-registro/presencial', {
+                                    method: 'POST',
+                                    body: formData
+                                })
+
+                                if(resultado.status === 201) {
+                                    const { token } = await resultado.json(); 
+                                    window.location = '/finalizar-registro/conferencias';
+                                }
+                            })()
+                        });
+                    },
+                    onError: function(err) {
+                        console.error('Error en el proceso de pago:', err);
+                    }
+                }).render('#paypal-button-container');
+            </script>
         </div>
 
 
@@ -46,10 +80,43 @@
             </ul>
 
             <div class="paquete__precio">$49</div>
+            
+            <div id="paypal-button-container-2"></div>
 
-            <form action="/finalizar-registro/virtual" method="post">
-                <input class="paquetes__submit" type="submit" value="Inscripcion Virtual">
-            </form>
+            <script>
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: '49.00' // Monto que deseas cobrar (en formato decimal)
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            (async function(){
+                                const formData = new FormData();
+                                formData.append('pago_id',details.purchase_units[0].payments.captures[0].id )
+                                   
+                                const resultado = await fetch('/finalizar-registro/virtual', {
+                                    method: 'POST',
+                                    body: formData
+                                })
+
+                                if(resultado.status === 201) {
+                                    const { token } = await resultado.json(); 
+                                    window.location = '/finalizar-registro/conferencias';
+                                }
+                            })()
+                        });
+                    },
+                    onError: function(err) {
+                        console.error('Error en el proceso de pago:', err);
+                    }
+                }).render('#paypal-button-container-2');
+            </script>
         </div>
     </div>
 </main>

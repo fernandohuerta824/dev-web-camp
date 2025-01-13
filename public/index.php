@@ -41,7 +41,11 @@ $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 //Registro de usuario
 $router->get('/finalizar-registro', [RegistroController::class, 'crear']);
 $router->post('/finalizar-registro/gratis', [RegistroController::class, 'gratis']);
+$router->post('/finalizar-registro/presencial', [RegistroController::class, 'presencial']);
+$router->post('/finalizar-registro/virtual', [RegistroController::class, 'virtual']);
 $router->get('/boleto', [RegistroController::class, 'boleto']);
+$router->get('/conferencias', [RegistroController::class, 'conferencias']);
+
 
 
 //Area de administracion
